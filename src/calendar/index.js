@@ -108,7 +108,7 @@ const begin = (momentLang) => {
   $(window).on('action:ajaxify.end', init);
 };
 
-__webpack_public_path__ = `${RELATIVE_PATH}/plugins/nodebb-plugin-calendar/bundles/`; // eslint-disable-line
+__webpack_public_path__ = `${RELATIVE_PATH}/plugins/nodebb-plugin-calendar-gaia/bundles/`; // eslint-disable-line
 
 const lang = config.userLang || config.defaultLang;
 const momentLang = lang.toLowerCase().replace(/_/g, '-');

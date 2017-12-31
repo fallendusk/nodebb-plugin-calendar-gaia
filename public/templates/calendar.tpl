@@ -37,7 +37,7 @@ role="dialog" aria-labelledby="plugin-calendar-cal-event-display-title">
   window.calendarEventData = {{eventJSON}};
 
   function onload() {
-    require(['{relative_path}/plugins/nodebb-plugin-calendar/bundles/calendar.js']);
+    require(['{relative_path}/plugins/nodebb-plugin-calendar-gaia/bundles/calendar.js']);
     $('#plugin-calendar-cal-event-display').modal({
       backdrop: false,
       show: window.calendarEventData && !!window.calendarEventData.pid,
