@@ -8,7 +8,7 @@
     "babel": "babel src --out-dir build --source-maps",
     "build": "set NODE_ENV=development&& npm run babel && webpack --progress && node ../nodebb/nodebb build",
     "build-production": "npm run babel && set NODE_ENV=production && webpack --progress",
-    "release": "npm run test && npm run build-production && npm version prerelease && npm publish",
+    "release": "npm run build-production && npm version prerelease && npm publish",
     "lint": "eslint ./src/"
   },
   "repository": {

@@ -22,7 +22,7 @@ const getSettings = async () => {
     respondIfCanReply: convert.respondIfCanReply(respondIfCanReply),
     mainPostOnly: convert.mainPostOnly(mainPostOnly),
     enableDiscordNotifications: convert.enableDiscordNotifications(enableDiscordNotifications),
-    discordWebhookUrl: convert.discordWebhookUrl(discordWebhookUrl)
+    discordWebhookUrl: convert.discordWebhookUrl(discordWebhookUrl),
   };
 };
 
