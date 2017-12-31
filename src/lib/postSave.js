@@ -10,16 +10,24 @@ import { getSetting } from './settings';
 const plugins = require.main.require('./src/plugins');
 const topics = require.main.require('./src/topics');
 const winston = require.main.require('winston');
-
+const nconf = require.main.require('nconf');
+const async = require.main.require('async');
 const p = Promise.promisify;
 
+const moment = require('moment');
 const fireHook = p(plugins.fireHook);
 const getTopicField = p(topics.getTopicField);
+const forumURL = nconf.get('url');
 
 const isMainPost = async ({ pid, tid }) => {
   const mainPid = await getTopicField(tid, 'mainPid');
   return parseInt(mainPid, 10) === parseInt(pid, 10);
 };
+
+const getTopicSlug = async (tid) => {
+  const topicSlug = await getTopicField(tid, 'slug');
+  return topicSlug;
+}
 
 const postSave = async (data) => {
   const { post } = data;
@@ -80,6 +88,51 @@ const postSave = async (data) => {
   if (event) {
     await saveEvent(event);
     winston.verbose(`[plugin-calendar] Event (pid:${event.pid}) saved`);
+
+    // If discord notifications enabled, send message to Discord channel
+    if (await getSetting('enableDiscordNotifications')) {
+      var Discord = require('discord.js');
+      var url = await getSetting('discordWebhookUrl');
+      var hook = null;
+      var match = url.match(/https:\/\/discordapp\.com\/api\/webhooks\/([0-9]+?)\/(.+?)$/);
+
+      // connect discord webhook
+      if (match) {
+        hook = new Discord.WebhookClient(match[1], match[2]);
+      }
+      
+      if (hook) {
+        let slug = await getTopicSlug(post.tid);
+        let startDate = new moment(event.startDate);
+        let endDate = new moment(event.endDate);
+        hook.sendMessage('', {embeds:[
+          {
+            "title": event.name,
+            "description": event.description,
+            "url": `${forumURL}/topic/${slug}`,
+            "color": 14775573,
+            "thumbnail": {
+              "url": "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png"
+            },
+            "fields": [
+              {
+                "name": "Location",
+                "value": event.location
+              },
+              {
+                "name": "Event Start",
+                "value": `${startDate.format('MMM D, YYYY h:mmA')} (UTC${startDate.format('ZZ')})`
+              },
+              {
+                "name": "Event End",
+                "value": `${endDate.format('MMM D, YYYY h:mmA')} (UTC${endDate.format('ZZ')})`
+              }
+            ]
+          }
+        ]}).catch(console.error);
+        winston.verbose(`[plugin-calendar] Discord Notification for Event (pid:${event.pid}) sent.`);     
+      }
+    }
   }
 
   return data;

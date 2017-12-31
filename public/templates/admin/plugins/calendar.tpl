@@ -24,6 +24,18 @@
               Link the permission to respond to an event to the reply permission, as opposed to (by default) the view permission
             </label>
           </div>
+          <div class="form-group">
+            <label for="enableDiscordNotifications">
+              <input type="checkbox" name="enableDiscordNotifications" id="enableDiscordNotifications" <!-- IF settings.enableDiscordNotifications --> checked <!-- ENDIF settings.enableDiscordNotifications --> />
+              Enable Discord Webhook Notifications for all events
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="discordWebhookUrl">
+              <input type="text" class="form-control" name="discordWebhookUrl" id="discordWebhookUrl" value="{settings.discordWebhookUrl}" />
+              Discord Webhook URL for sending notifications
+            </label>
+          </div>
         </div>
       </div>
     </form>

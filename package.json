@@ -1,7 +1,7 @@
 {
-  "name": "nodebb-plugin-calendar",
+  "name": "nodebb-plugin-calendar-gaia",
   "version": "1.0.0-alpha.41",
-  "description": "Calendar and events for NodeBB",
+  "description": "Calendar and events for NodeBB, with modifications for Project Gaia",
   "main": "library.js",
   "scripts": {
     "test": "npm run lint && babel-node ./src/lib/tests",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pitaj/nodebb-plugin-calendar.git"
+    "url": "git+https://github.com/fallendusk/nodebb-plugin-calendar-gaia.git"
   },
   "keywords": [
     "nodebb",
@@ -56,9 +56,10 @@
     "babel-runtime": "^6.23.0",
     "bluebird": "^3.5.0",
     "core-js": "^2.4.1",
+    "discord.js": "^11.2.1",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "fullcalendar": "^3.4.0",
-    "moment": "^2.18.1",
+    "moment": "^2.20.1",
     "source-map-support": "^0.4.15",
     "validator": "^7.0.0"
   },

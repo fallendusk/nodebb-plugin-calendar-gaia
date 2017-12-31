@@ -1,13 +1,13 @@
-# nodebb-plugin-calendar
+# nodebb-plugin-calendar-gaia
 
-This plugin adds a site-wide calendar to NodeBB.
+This plugin adds a site-wide calendar to NodeBB. Modifications for Project Gaia to include Discord notification support
 
 ## Installation
 Current alpha/beta version can be installed by doing the following:
 
  1. Open a terminal in the NodeBB root directory
- 2. Install the latest *nodebb-plugin-calendar*:
-    `npm install nodebb-plugin-calendar@latest`
+ 2. Install the latest *nodebb-plugin-calendar-gaia*:
+    `npm install nodebb-plugin-calendar-gaia@latest`
  3. Restart nodebb and activate the plugin
 
 ## Configuration

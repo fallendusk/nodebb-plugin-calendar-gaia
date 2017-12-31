@@ -11,14 +11,18 @@ const convert = {
   checkingInterval: x => parseInt(x, 10) || 1000 * 60 * 5,
   respondIfCanReply: x => x === true || x === 'true',
   mainPostOnly: x => x === true || x === 'true',
+  enableDiscordNotifications: x => x === true || x === 'true',
+  discordWebhookUrl: x => x,
 };
 
 const getSettings = async () => {
-  const { checkingInterval, respondIfCanReply, mainPostOnly } = await getObject('plugin-calendar:settings') || {};
+  const { checkingInterval, respondIfCanReply, mainPostOnly, enableDiscordNotifications, discordWebhookUrl } = await getObject('plugin-calendar:settings') || {};
   return {
     checkingInterval: convert.checkingInterval(checkingInterval),
     respondIfCanReply: convert.respondIfCanReply(respondIfCanReply),
     mainPostOnly: convert.mainPostOnly(mainPostOnly),
+    enableDiscordNotifications: convert.enableDiscordNotifications(enableDiscordNotifications),
+    discordWebhookUrl: convert.discordWebhookUrl(discordWebhookUrl)
   };
 };
 
