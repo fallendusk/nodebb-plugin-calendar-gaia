@@ -1,5 +1,5 @@
 {
-  "name": "NodeBB Calendar plugin",
+  "name": "NodeBB Calendar plugin for PG",
   "library": "library.js",
   "staticDirs": {
     "bundles": "build/bundles/"
